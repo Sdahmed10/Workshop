@@ -36,7 +36,7 @@ jobs:
       - name: Run Playwright tests
         run: mvn test
 
-      - name: Run Login class (full debug)
+      - name: Run LoginTests class (full debug)
         run: mvn exec:java -Dexec.mainClass=Tests.LoginTests
 
 
