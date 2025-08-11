@@ -23,7 +23,7 @@ public class BaseTest {
                 break;
             case "chromium":
             default:
-                browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
+                browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(true));
                 break;
         }
         context = browser.newContext();

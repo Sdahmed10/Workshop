@@ -33,8 +33,15 @@ jobs:
       - name: Build project (skip tests)
         run: mvn clean install -DskipTests --no-transfer-progress
 
-      - name: Run Playwright tests
-        run: mvn test
+      - name: Install xvfb
+        run: sudo apt-get install xvfb
+
+      - name: Install Playwright browsers
+        run: mvn exec:java -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install"
+
+
+      - name: Run Playwright tests with xvfb
+        run: xvfb-run mvn test
 
       - name: Run LoginTests class (full debug)
         run: mvn exec:java -Dexec.mainClass=Tests.LoginTests
