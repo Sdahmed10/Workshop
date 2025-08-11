@@ -44,7 +44,7 @@ jobs:
         run: xvfb-run mvn test
 
       - name: Run LoginTests class (full debug)
-        run: mvn exec:java -Dexec.mainClass=Tests.LoginTests -e
+        run: mvn exec:java -Dexec.mainClass=Tests.LoginTests -X
 
 
 
