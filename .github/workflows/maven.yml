@@ -39,8 +39,8 @@ jobs:
           sudo apt-get install -y xvfb
       
 
-      - name: Install Playwright Browsers
-        uses: microsoft/playwright-github-action@v1
+      - name: Install Playwright browsers and dependencies
+        run: npx playwright install --with-deps
 
 
       - name: Run Playwright tests with xvfb
