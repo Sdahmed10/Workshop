@@ -43,8 +43,9 @@ jobs:
       - name: Run Playwright tests with xvfb
         run: xvfb-run mvn test
 
-      - name: Run LoginTests class (full debug)
-        run: mvn exec:java -Dexec.mainClass=/Users/sdiriahmed/IdeaProjects/PlaywrightPOM_Workshop/src/test/java/Tests/LoginTests.java -X
+      - name: Run tests
+        run: mvn test
+
 
 
 
