@@ -6,7 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Playwright Tests
+name: PlaywrightPOM_Workshop
 
 on:
   push:
@@ -34,17 +34,19 @@ jobs:
         run: mvn clean install -DskipTests --no-transfer-progress
 
       - name: Install xvfb
-        run: sudo apt-get install xvfb
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb
+      
 
-      - name: Install Playwright browsers
-        run: mvn exec:java -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install"
+      - name: Install Playwright Browsers
+        uses: microsoft/playwright-github-action@v1
 
 
       - name: Run Playwright tests with xvfb
         run: xvfb-run mvn test
 
-      - name: Run tests
-        run: mvn test
+
 
 
 
