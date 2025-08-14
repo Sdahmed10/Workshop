@@ -20,29 +20,29 @@ jobs:
     timeout-minutes: 10
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repository #Télécharge ton code depuis GitHub dans la VM
         uses: actions/checkout@v4
 
-      - name: Set up Java 24
+      - name: Set up Java 24   #install jdk (temurin) et configure le cache maven
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
           java-version: '24'
           cache: 'maven'
 
-      - name: Build project (skip tests)
+      - name: Build project (skip tests) #Compile avec Maven sans lancer les tests
         run: mvn clean install -DskipTests --no-transfer-progress
 
-      - name: Install xvfb
+      - name: Install xvfb #Install serveur graphique virtuel pour Playwright
         run: |
           sudo apt-get update
           sudo apt-get install -y xvfb  
 
-      - name: Install Playwright browsers and dependencies
+      - name: Install Playwright browsers and dependencies #Télécharge Chromium, Firefox, WebKit et dépendances
         run: npx playwright install --with-deps
 
 
-      - name: Run Playwright tests with xvfb
+      - name: Run Playwright tests with xvfb #Lance `mvn test` dans un environnement graphique virtuel
         run: xvfb-run mvn test
 
 
